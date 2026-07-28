@@ -40,5 +40,21 @@ def load_settings() -> Settings:
         / os.getenv("LOG_FILE", "data/output/email_logs.csv"),
     )
 
+def validate_settings(settings: Settings) -> None:
+    required = {
+        "SMTP_HOST": settings.smtp_host,
+        "EMAIL_ADDRESS": settings.email_address,
+        "EMAIL_PASSWORD": settings.email_password,
+    }
+
+    missing = [name for name, value in required.items() if not value]
+
+    if missing:
+        raise ValueError(
+            "Configuration Error\n\nMissing:\n- "
+            + "\n- ".join(missing)
+        )
+
 
 settings = load_settings()
+validate_settings(settings)
