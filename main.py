@@ -6,7 +6,7 @@ def main():
     print("Smart Cold Mailer")
 
     print(
-        f"Daily email limit: {settings.DAILY_EMAIL_LIMIT}"
+        f"Daily email limit: {settings.daily_email_limit}"
     )
 
 
